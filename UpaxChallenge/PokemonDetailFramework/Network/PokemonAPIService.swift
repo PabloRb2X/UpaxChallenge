@@ -8,12 +8,15 @@
 import Foundation
 import Combine
 
-protocol PokemonAPIServiceInterface: AnyObject {
+public protocol PokemonAPIServiceInterface: AnyObject {
     func fetchPokemonDetail(id: Int) -> AnyPublisher<PokemonDetail, Error>
 }
 
-final class PokemonAPIService: PokemonAPIServiceInterface {
-    func fetchPokemonDetail(id: Int) -> AnyPublisher<PokemonDetail, Error> {
+public final class PokemonAPIService: PokemonAPIServiceInterface {
+    
+    public init() { }
+
+    public func fetchPokemonDetail(id: Int) -> AnyPublisher<PokemonDetail, Error> {
         guard let url = URL(string: "https://pokeapi.co/api/v2/pokemon/\(id)") else {
             
             return Fail(error: URLError(.badURL)).eraseToAnyPublisher()

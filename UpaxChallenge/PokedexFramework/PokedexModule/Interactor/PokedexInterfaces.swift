@@ -22,7 +22,7 @@ protocol PokedexInteractorProtocol: AnyObject {
     func fetchPokemons(url: String?)
 }
 
-public protocol PokedexRouterProtocol: AnyObject {
+public protocol PokedexWireframeProtocol: AnyObject {
     static func createModule() -> UIViewController
     func navigateToPokemonDetail(pokemonID: Int)
 }

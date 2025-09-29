@@ -10,14 +10,17 @@ import Foundation
 final class PokedexInteractor: PokedexInteractorProtocol {
     weak var presenter: PokedexPresenter?
     private var nextURL: String? = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=20"
+    private let session: URLSession
     
-    init() {}
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
     
     func fetchPokemons(url: String? = nil) {
         let urlString = url ?? nextURL
         guard let urlString = urlString, let url = URL(string: urlString) else { return }
         
-        URLSession.shared.dataTask(with: url) { [weak self] data, _, error in
+        session.dataTask(with: url) { [weak self] data, _, error in
             if let error = error {
                 DispatchQueue.main.async {
                     self?.presenter?.fetchFailed(error: error.localizedDescription)

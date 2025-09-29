@@ -10,9 +10,16 @@ import CoreData
 final class LoginInteractor {
     
     weak var presenter: LoginPresenter?
-    private let context = CoreDataManager.shared.context
+    private let context: NSManagedObjectContext
+    private var testContext: NSManagedObjectContext?
     
-    init() {}
+    init() {
+        self.context = CoreDataManager.shared.context
+    }
+    
+    private var activeContext: NSManagedObjectContext {
+        return testContext ?? context
+    }
 }
 
 extension LoginInteractor: LoginInteractorProtocol {
@@ -61,5 +68,11 @@ extension LoginInteractor: LoginInteractorProtocol {
         } catch {
             presenter?.loginFailed(error: "Error to register the user")
         }
+    }
+}
+
+extension LoginInteractor {
+    func setContextForTesting(_ context: NSManagedObjectContext) {
+        self.testContext = context
     }
 }

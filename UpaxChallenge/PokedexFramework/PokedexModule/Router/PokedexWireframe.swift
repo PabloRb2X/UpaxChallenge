@@ -31,7 +31,7 @@ public class PokedexWireframe {
     }
 }
 
-extension PokedexWireframe: PokedexRouterProtocol {
+extension PokedexWireframe: PokedexWireframeProtocol {
     public func navigateToPokemonDetail(pokemonID: Int) {
         let viewModel = PokemonDetailViewModel()
         let detailView = PokemonDetailView(viewModel: viewModel, pokemonID: pokemonID)

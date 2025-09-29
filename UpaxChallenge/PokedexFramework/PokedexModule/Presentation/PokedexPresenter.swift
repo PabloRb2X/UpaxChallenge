@@ -5,10 +5,10 @@
 //  Created by Pablo Ramirez on 27/09/25.
 //
 
-final class PokedexPresenter {
+class PokedexPresenter {
     weak var view: PokedexViewProtocol?
     var interactor: PokedexInteractorProtocol?
-    var router: PokedexRouterProtocol?
+    var router: PokedexWireframeProtocol?
     
     private var pokemons: [Pokemon] = []
     private var nextURL: String?

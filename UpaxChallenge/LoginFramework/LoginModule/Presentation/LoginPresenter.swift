@@ -5,7 +5,7 @@
 //  Created by Pablo Ramirez on 27/09/25.
 //
 
-final class LoginPresenter: LoginPresenterProtocol {
+class LoginPresenter: LoginPresenterProtocol {
     weak var view: LoginViewProtocol?
     var interactor: LoginInteractorProtocol?
     var wireframe: LoginWireframeProtocol?

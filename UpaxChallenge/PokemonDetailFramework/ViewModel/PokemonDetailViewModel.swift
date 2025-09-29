@@ -10,16 +10,18 @@ import Combine
 import SwiftUI
 
 public final class PokemonDetailViewModel: ObservableObject {
-    @Published var pokemon: PokemonDetail?
-    @Published var isLoading = false
-    @Published var errorMessage: String?
+    @Published public var pokemon: PokemonDetail?
+    @Published public var isLoading = false
+    @Published public var errorMessage: String?
     
-    private let service = PokemonAPIService()
+    public let service: PokemonAPIServiceInterface
     private var cancellables = Set<AnyCancellable>()
     
-    public init() { }
+    public init(service: PokemonAPIServiceInterface = PokemonAPIService()) {
+        self.service = service
+    }
     
-    func fetchPokemon(id: Int) {
+    public func fetchPokemon(id: Int) {
         isLoading = true
         errorMessage = nil
         
